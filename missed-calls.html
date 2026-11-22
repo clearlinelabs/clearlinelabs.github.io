@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Missed Call Cost Calculator for Home Service Businesses | Clearline Labs</title>
+<meta name="description" content="How much revenue do missed calls cost your HVAC, plumbing, roofing or electrical business each month? Free calculator, plus the fix.">
+<link rel="stylesheet" href="style.css"></head>
+<body><div class="wrap">
+<header><a class="brand" href="./">CLEARLINE LABS · FREE TOOLS</a><nav><a href="speed-to-lead.html">Speed to lead</a><a href="late-invoices.html">Late invoices</a></nav></header>
+<h1>What do missed calls cost you?</h1>
+<p class="lead">Home service companies estimate they answer 97% of calls; field research found the real average is 66% (<a href="https://www.mightycall.com/blog/research-businesses-arent-answering-the-phone-as-much-as-they-think/" rel="nofollow">MightyCall</a>). Plug in your own numbers.</p>
+<div class="grid">
+ <div class="card">
+  <label for="calls">Inbound calls per week</label><input id="calls" type="number" value="60" min="0">
+  <label for="miss">% of calls that go unanswered</label><input id="miss" type="number" value="34" min="0" max="100">
+  <label for="book">% of those callers who would have booked (your close rate)</label><input id="book" type="number" value="30" min="0" max="100">
+  <label for="ticket">Average job value ($)</label><input id="ticket" type="number" value="400" min="0">
+ </div>
+ <div class="card">
+  <div class="small">Estimated revenue lost to missed calls</div>
+  <div class="result" id="month">$0</div><div class="small">per month</div>
+  <div class="result" id="year" style="font-size:32px">$0</div><div class="small">per year</div>
+  <p class="small" id="explain"></p>
+  <h3>The fix: text back in seconds</h3>
+  <p class="small">When a call is missed, the caller gets a text within seconds ("Sorry we missed you, how can we help?"). No double texts on repeat calls, a different message after hours, and silence during quiet hours.</p>
+  <a class="cta" href="https://github.com/clearlinelabs/n8n-service-business-workflows/blob/main/workflows/missed-call-textback.json">Get the free workflow</a>
+  <a class="cta ghost" href="https://payhip.com/b/TDyEN">We install it for you ($249)</a>
+ </div>
+</div>
+<footer>Estimates only, based on the numbers you enter. Built by Clearline Labs · <a href="https://payhip.com/ClearlineSheets90">All automations</a></footer>
+</div>
+<script>
+const $=id=>document.getElementById(id), fmt=n=>'$'+Math.round(n).toLocaleString('en-US');
+function calc(){const c=+$('calls').value||0,m=(+$('miss').value||0)/100,b=(+$('book').value||0)/100,t=+$('ticket').value||0;
+ const lostJobs=c*m*b*52/12, mo=lostJobs*t; $('month').textContent=fmt(mo); $('year').textContent=fmt(mo*12);
+ $('explain').textContent=`About ${Math.round(c*m)} missed calls a week; at a ${Math.round(b*100)}% close rate that is ~${lostJobs.toFixed(1)} jobs a month.`;}
+document.querySelectorAll('input').forEach(i=>i.addEventListener('input',calc)); calc();
+</script></body></html>

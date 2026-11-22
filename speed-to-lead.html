@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Speed-to-Lead Calculator: What Slow Replies Cost | Clearline Labs</title>
+<meta name="description" content="Estimate the revenue you leave on the table by replying to web leads slowly. Free calculator for service businesses and agencies.">
+<link rel="stylesheet" href="style.css"></head>
+<body><div class="wrap">
+<header><a class="brand" href="./">CLEARLINE LABS · FREE TOOLS</a><nav><a href="missed-calls.html">Missed calls</a><a href="late-invoices.html">Late invoices</a></nav></header>
+<h1>What are slow replies costing you?</h1>
+<p class="lead">An audit of 2,241 US companies found only 37% replied to a web lead within an hour, and 23% never replied at all (<a href="https://scholarsarchive.byu.edu/facpub/9711" rel="nofollow">Harvard Business Review, 2011</a>). If you answer first, you win more conversations. Enter your numbers and the lift you expect.</p>
+<div class="grid">
+ <div class="card">
+  <label for="leads">Web leads per month</label><input id="leads" type="number" value="40" min="0">
+  <label for="close">Current close rate (%)</label><input id="close" type="number" value="20" min="0" max="100">
+  <label for="lift">Expected close-rate lift from replying in under a minute (percentage points)</label><input id="lift" type="number" value="5" min="0" max="100">
+  <label for="deal">Average deal value ($)</label><input id="deal" type="number" value="2500" min="0">
+ </div>
+ <div class="card">
+  <div class="small">Extra revenue from answering first</div>
+  <div class="result ok" id="month">$0</div><div class="small">per month</div>
+  <div class="result ok" id="year" style="font-size:32px">$0</div><div class="small">per year</div>
+  <p class="small" id="explain"></p>
+  <h3>The fix: a personal reply in under a minute</h3>
+  <p class="small">New web leads get a personal AI-written reply in under a minute, land in your lead sheet, and you get an alert to call them back. Works with any form tool.</p>
+  <a class="cta" href="https://payhip.com/b/8SsmG">Get the workflow ($69)</a>
+  <a class="cta ghost" href="https://payhip.com/b/TDyEN">We install it ($249)</a>
+ </div>
+</div>
+<footer>Estimates only, based on the numbers you enter. Built by Clearline Labs · <a href="https://payhip.com/ClearlineSheets90">All automations</a></footer>
+</div>
+<script>
+const $=id=>document.getElementById(id), fmt=n=>'$'+Math.round(n).toLocaleString('en-US');
+function calc(){const l=+$('leads').value||0,lift=(+$('lift').value||0)/100,d=+$('deal').value||0,c=(+$('close').value||0)/100;
+ const extra=l*lift*d; $('month').textContent=fmt(extra); $('year').textContent=fmt(extra*12);
+ $('explain').textContent=`${l} leads × ${Math.round(lift*100)} extra points of close rate = ${(l*lift).toFixed(1)} more deals a month (from ${(l*c).toFixed(1)} to ${(l*(c+lift)).toFixed(1)}).`;}
+document.querySelectorAll('input').forEach(i=>i.addEventListener('input',calc)); calc();
+</script></body></html>
